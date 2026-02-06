@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sorry Envelope</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+.envelope {
+    width: 340px;
+    height: 240px;
+    background: #fff;
+    position: relative;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 120px;
+    background: #ff9aa2;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: transform 0.8s ease;
+    transform-origin: top;
+    z-index: 3;
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+}
+
+.letter {
+    position: absolute;
+    bottom: -120%;
+    left: 8%;
+    width: 84%;
+    height: 200px;
+    background: #fffaf0;
+    border-radius: 5px;
+    padding: 14px;
+    box-sizing: border-box;
+    transition: bottom 0.8s ease;
+    z-index: 2;
+    overflow-y: auto;
+}
+
+.envelope.open .letter {
+    bottom: 15px;
+}
+
+.letter p {
+    font-size: 13.5px;
+    color: #333;
+    text-align: justify;
+}
+
+.buttons {
+    margin-top: 10px;
+    text-align: center;
+}
+
+button {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 18px;
+    background: #e75480;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+    margin: 5px;
+}
+
+button:hover {
+    background: #d6456b;
+}
+
+.controls {
+    margin-top: 15px;
+}
+
+.thankyou {
+    display: none;
+    margin-top: 20px;
+    animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="envelope" id="envelope">
+        <div class="flap"></div>
+
+        <div class="letter">
+            <p>
+                Kuch log humse naraz ho gaye hain.  
+                For their instance, I did not mean to humiliate or hurt anyone.  
+                Maybe meri tone sahi tarah se samajh nahi aayi.  
+                Ab har baat ki justification dena bhi zaroori nahi hota.  
+                Chalo ache bachon ki tarah leader ko baksh dete hain.  
+                <strong>Jane de nagma leader ko….</strong>
+            </p>
+
+            <div class="buttons">
+                <button onclick="agree()">Agree</button>
+               
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="openEnvelope()">Open Envelope</button>
+         <button onclick="closeEnvelope()">close</button>
+    </div>
+
+    <div class="thankyou" id="thankyou">
+        <h2>Thank You 💖</h2>
+        <p>Samajhne ke liye shukriya.</p>
+    </div>
+
+</div>
+
+<script>
+function openEnvelope() {
+    document.getElementById("envelope").classList.add("open");
+}
+
+function closeEnvelope() {
+    document.getElementById("envelope").classList.remove("open");
+}
+
+function agree() {
+    document.getElementById("envelope").style.display = "none";
+    document.getElementById("thankyou").style.display = "block";
+}
+</script>
+
+</body>
+</html>
